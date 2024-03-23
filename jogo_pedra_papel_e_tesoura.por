@@ -1,46 +1,49 @@
 programa
 {	//Questão 6 - jogo pedra, papel e tesoura
 	inclua biblioteca Util --> ut
-	inclua biblioteca Texto --> txt
-
+	
 	funcao inicio()
 	{
-	inteiro pedra = 1
-	inteiro papel = 2
-	inteiro tesoura = 3
-	inteiro npc //computador
-	inteiro vc //usu�rio
-	inteiro jogo // partidas
-	inteiro vencidas = 0
-	inteiro empate = 0
-	inteiro derrota = 0
+	inteiro pedra = 1 // Opção do jogo.
+	inteiro papel = 2 // Opção do jogo.
+	inteiro tesoura = 3 // Opção do jogo.
+	inteiro npc // Escolha do jogador computador.
+	inteiro vc // Escolhas do jogador usuário.
+	inteiro jogo // Quantidade de partidas escolhidas para jogar.
+	inteiro vencidas = 0 //Acumulador de vitórias.
+	inteiro empate = 0 //Acumulador de empates.
+	inteiro derrota = 0 //Acumulador de derrotas.
 	
-  escreva("Quantas partidas quer jogar?: ")
+	
+	escreva("Quantas partidas quer jogar?: ")
+	leia(jogo) // número de vezes que o jogo percorrerá no laço.
 
-	leia(jogo)
+	limpa() // limpa as interações anteriores.
 
-	limpa()
+	para (inteiro i = 0; i < jogo; i++) { // repetição para percorrer o jogo conforme a quantidade de partidas escolhidas.
 		
-	para(inteiro vez = 1; vez <= jogo; vez++) {
+		escreva("\nEscolha pedra(1), papel(2), ou tesoura(3) e que o melhor vença!\nEscolha: ") //Interação de escolha no jogo do jogador usuário.
+		leia(vc) // Entrada de atribuição de escolha de jogo
 
-		escreva("Escolha: pedra(1), ou papel(2), ou tesoura(3) e que o melhor ven�a!\nEscolha: ")
-		leia(vc)
+		npc = ut.sorteia(1, 3) // método que escolhe aleatoriamente um jogo para o jogador computador.
 
-		npc = ut.sorteia(1, 3)
-    
-		
-	    	se (npc == vc) {
-				empate+=1
-							
-			} senao se ((npc == 1 e vc == 2) ou (npc == 2 e vc == 3) ou (npc == 3 e vc == 1)) {
-				vencidas+=1
-				
-			} senao se ((npc == 11 e vc == 3) ou (npc == 2 e vc == 1) ou (npc == 3 e vc == 2)) {
-				derrota+=1
-		
+		se(npc == 1) { // Bloco de condições para imprimir escolhas de jogo do computador
+			escreva("\nComputador escolheu pedra\n")
+		} senao se (npc == 2) {
+			escreva("\nComputador escolheu papel\n")
+		} senao se(npc == 3) {
+			escreva("\nComputador escolheu tesoura\n")
 		}
 		
-	} escreva("Voc� escolheu jogar ", jogo," partida(as)!\nVenceu: ",vencidas,"\nPerdeu: ", derrota,"\nEmpatou: ",empate,"\n")
+		se (npc == vc) { //Bloco de condições que define resultados da rodada
+			empate = empate + 1	
+		} senao se ((npc == 1 e vc == 2) ou (npc == 2 e vc == 3) ou (npc == 3 e vc == 1)) {
+			vencidas = vencidas + 1	
+		} senao se ((npc == 11 e vc == 3) ou (npc == 2 e vc == 1) ou (npc == 3 e vc == 2)) {
+			derrota = derrota + 1
+		}
+	}
+	escreva("\nVocê escolheu jogar ", jogo," partidas!\nVenceu: ",vencidas,"\nPerdeu: ", derrota,"\nEmpatou: ",empate,"\n") // Resultados
 	
 	}
 }
