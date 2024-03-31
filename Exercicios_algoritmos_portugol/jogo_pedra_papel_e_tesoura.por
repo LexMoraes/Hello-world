@@ -1,5 +1,10 @@
 programa
 {	//Questão 6 - jogo pedra, papel e tesoura
+
+	//Objetivo: Criar uma versão do jogo Pedra, Papel e Tesoura, onde o usuário joga contra o computador.
+	//O usuário escolhe sua jogada digitando "Pedra", "Papel" ou "Tesoura", e o computador escolhe aleatoriamente.
+	//O programa então determina o vencedor de cada rodada.
+
 	inclua biblioteca Util --> ut
 	
 	funcao inicio()
