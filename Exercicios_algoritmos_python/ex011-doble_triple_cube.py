@@ -1,0 +1,15 @@
+print("-- Insira dois números inteiros e um número real para ter como retorno: --")
+print("_    *1 - O produto do dobro do primeiro com metade do segundo;          _")
+print("_    *2 - A soma do triplo do primeiro com o terceiro;                   _")
+print("_    *3 - O terceiro elevado ao cubo;                                    _")
+print("--------------------------------------------------------------------------")
+print("")
+
+num = int(input("Insira o 1º número inteiro: "))
+num2 = int(input("Insira o 2º número inteiro: "))
+num3 = float(input("Insira o número real: "))
+print("")
+
+print(f"1 - O produto do dobro do primeiro com metade do segundo: {(num*2)+(num2/2)}")
+print(f"2 - A soma do triplo do primeiro com o terceiro: {(num*3)+num3}")
+print(f"3 - O terceiro elevado ao cubo: {num3**3}")
