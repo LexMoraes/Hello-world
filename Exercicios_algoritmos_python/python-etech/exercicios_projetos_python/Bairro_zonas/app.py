@@ -6,6 +6,12 @@
 # 5. Crie um arquivo chamada app.py com uma estrutura de menus para listar todos os bairros,
 # listar bairros de uma determinada zona (digitada pelo usuário),
 # total de habitantes por zona e quantidade de bairros por zonas.
+import actions
+from actions import BairroActions
+from models import Bairro
+
+
+bairros = BairroActions.obter_arquivo
 
 def menu_bairro_zona():
     print('* --------------------Menu principal-------------------- *')
@@ -16,11 +22,27 @@ def menu_bairro_zona():
     print('*  [5] - Sair do programa;                               *')
     print('* ------------------------------------------------------ *')
 
-menu_bairro_zona()
 
-print('\n')
-choise = int(input('Escolha uma opção: '))
+choise = 0
 
-match choise:
+while True:
 
-    case '1':
+    menu_bairro_zona()
+
+    print('\n')
+    choise = int(input('Escolha uma opção: '))
+
+    match choise:
+
+        case 1:
+            print(bairros)
+        case 2:
+            zona = input('Digite a zona: ')
+            habitantes = actions.BairroActions.total_habitantes(zona)
+            print(f'Total de habitantes de zona {zona}: {habitantes}')
+
+        #case '3':
+
+
+    if choise >= 0 and choise <= 4:
+        break

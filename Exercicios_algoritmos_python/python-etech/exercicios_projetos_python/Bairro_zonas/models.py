@@ -7,17 +7,15 @@
 # listar bairros de uma determinada zona (digitada pelo usuário),
 # total de habitantes por zona e quantidade de bairros por zonas.
 
-from actions import BairroZonas
+class Bairro:
+    id = 1
 
-
-
-class Bairro(BairroZonas):
-    def __init__(self, nome = None, zona = None, populacao = None):
-        self.__nome = nome
-        self.__zona = zona
+    def __init__(self, nome=None, zona=None, populacao=None):
+        self.codigo = Bairro.id
+        self.nome = nome
+        self.zona = zona
         self.populacao = populacao
 
-p = Bairro()
-p.nome = '<NAME>'
-p.zona = 'Bairro'
-p.populacao = 20
+    @staticmethod
+    def incremento_id():
+        Bairro.id += 1

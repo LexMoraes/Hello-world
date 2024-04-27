@@ -7,29 +7,34 @@
 # listar bairros de uma determinada zona (digitada pelo usuário),
 # total de habitantes por zona e quantidade de bairros por zonas.
 
-class BairroZonas:
+from typing import List
+import models
+
+bairros: List[models.Bairro] = []
+
+class BairroActions:
     @staticmethod
-    def __init__():
-        def obter_dados():
+    def obter_arquivo():
+        # "-> List[models.Bairro]" - é definida a typagem do retorno, apenas para melhoras a legibilidade.
+        # Lista para armazenar todos os bairros durante as varreduras em linhas do arquivo.
+        arquivo = open('Bairros Manaus.csv', 'r')
+        linhas = arquivo.readlines()
+        linhas.pop(0) # apagando a primeira linha, pois é o cabeçalho
+        for linha in linhas:
+            bairros.append(BairroActions.createBairros(linha))
+        return bairros
 
-            dados = []
+        arquivo.close()
 
-            arquivo = open('Bairros Manaus.csv', 'r')
+   # def buscar_bairro(zona: str) -> List[models.Bairro]:
 
-            linhas = arquivo.readlines()
-
-            linhas.pop(0)
-
-            for linha in linhas:
-                colunas = linha.split(',')
-
-                name = colunas[0]
-                zone = colunas[1]
-                population = colunas[2]
-
-            return name, zone, population
-
-            arquivo.close()
-
-
-
+    @staticmethod
+    def createBairros(linhas: str) -> List[models.Bairro]:
+        colunas = linhas.split(';')
+        bairro = models.Bairro(
+            colunas[0],
+            colunas[1],
+            colunas[2])
+        models.Bairro.id()
+        return
+        arquivo.close()
