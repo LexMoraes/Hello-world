@@ -7,34 +7,50 @@
 # listar bairros de uma determinada zona (digitada pelo usuário),
 # total de habitantes por zona e quantidade de bairros por zonas.
 
-from typing import List
+from typing import List, Iterator
 import models
 
 bairros: List[models.Bairro] = []
 
-class BairroActions:
-    @staticmethod
-    def obter_arquivo():
-        # "-> List[models.Bairro]" - é definida a typagem do retorno, apenas para melhoras a legibilidade.
-        # Lista para armazenar todos os bairros durante as varreduras em linhas do arquivo.
-        arquivo = open('Bairros Manaus.csv', 'r')
-        linhas = arquivo.readlines()
-        linhas.pop(0) # apagando a primeira linha, pois é o cabeçalho
-        for linha in linhas:
-            bairros.append(BairroActions.createBairros(linha))
-        return bairros
 
+class BairroActions:
+
+    @staticmethod
+    def carregar_dados():
+        arquivo = open('Bairros Manaus.csv', 'r')
+        dados = arquivo.readlines()
+        dados.pop(0)
+        for dado in dados:
+            bairros.append(BairroActions.criar_bairro(dado))
         arquivo.close()
 
-   # def buscar_bairro(zona: str) -> List[models.Bairro]:
-
     @staticmethod
-    def createBairros(linhas: str) -> List[models.Bairro]:
-        colunas = linhas.split(';')
+    def criar_bairro(linha: str) -> models.Bairro:
+        colunas = linha.split(';')
         bairro = models.Bairro(
             colunas[0],
             colunas[1],
-            colunas[2])
-        models.Bairro.id()
-        return
-        arquivo.close()
+            int(colunas[2])
+        )
+        models.Bairro.incrementar_id()
+        return bairro
+
+    @staticmethod
+    def buscar_bairro(zona: str) -> Iterator[models.Bairro]:
+        return filter(
+            lambda bairro: bairro.zona.lower() == zona.lower(),
+            bairros
+        )
+        # retorna [b para b em bairros se b.zona.lower() == zona.lower() com parâmetro a variável tupla 'bairro']
+
+    @staticmethod
+    def total_habitantes(zona: str) -> int:
+        populacao_zona = map(
+            lambda bairro: bairro.populacao,
+            BairroActions.buscar_bairro(zona)
+        )
+        return sum(populacao_zona)
+
+    @staticmethod
+    def total_bairros(zona: str) -> int:
+        return len(list(BairroActions.buscar_bairro(zona)))
