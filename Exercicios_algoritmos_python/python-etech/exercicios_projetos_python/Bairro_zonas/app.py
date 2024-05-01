@@ -7,11 +7,7 @@
 # listar bairros de uma determinada zona (digitada pelo usuário),
 # total de habitantes por zona e quantidade de bairros por zonas.
 import actions
-from actions import BairroActions
-from models import Bairro
 
-
-bairros = BairroActions.obter_arquivo
 
 def menu_bairro_zona():
     print('* --------------------Menu principal-------------------- *')
@@ -22,27 +18,37 @@ def menu_bairro_zona():
     print('*  [5] - Sair do programa;                               *')
     print('* ------------------------------------------------------ *')
 
+def main():
+    actions.BairroActions.carregar_dados()
+    while True:
+        menu_bairro_zona()
+        opcao = int(input('Digite sua opção: '))
 
-choise = 0
+        match opcao:
+            case 1:
+                for b in actions.bairros:
+                    print(b)
 
-while True:
+            case 2:
+                zona = input('Digite a zona: ')
+                bairros = actions.BairroActions.buscar_bairro(zona)
+                for b in bairros:
+                    print(b)
+            case 3:
+                zona = input('Digite a zona: ')
+                habitantes = actions.BairroActions.total_habitantes(zona)
+                print(f'Total de habitantes da zona {zona}: {habitantes}')
 
-    menu_bairro_zona()
+            case 4:
+                zona = input('Digite a zona: ')
+                total_bairros = actions.BairroActions.total_bairros(zona)
+                print(f'Total de bairro da zona {zona}: {total_bairros}')
 
-    print('\n')
-    choise = int(input('Escolha uma opção: '))
+            case 5:
+                break
+                
+            case _:
+                print('Opção inexistente, entre com qualquer                                                                                                                                           .')
+                main()
 
-    match choise:
-
-        case 1:
-            print(bairros)
-        case 2:
-            zona = input('Digite a zona: ')
-            habitantes = actions.BairroActions.total_habitantes(zona)
-            print(f'Total de habitantes de zona {zona}: {habitantes}')
-
-        #case '3':
-
-
-    if choise >= 0 and choise <= 4:
-        break
+main()
