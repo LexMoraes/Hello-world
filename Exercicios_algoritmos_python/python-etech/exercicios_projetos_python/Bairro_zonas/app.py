@@ -13,7 +13,7 @@ def menu_bairro_zona():
     print('* --------------------Menu principal-------------------- *')
     print('*  [1] - Listar todos os bairros;                        *')
     print('*  [2] - Listar bairros de uma zona;                     *')
-    print('*  [3] - Total de habitantes por bairros;                *')
+    print('*  [3] - Total de habitantes por zona;                   *')
     print('*  [4] - Total de bairros por zonas;                     *')
     print('*  [5] - Sair do programa;                               *')
     print('* ------------------------------------------------------ *')
