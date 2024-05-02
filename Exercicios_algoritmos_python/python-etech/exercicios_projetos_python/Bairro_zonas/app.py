@@ -48,7 +48,7 @@ def main():
                 break
                 
             case _:
-                print('Opção inexistente, entre com qualquer                                                                                                                                           .')
+                print('Opção inexistente, entre com qualquer tecla para voltar ao menu principal.')
                 main()
 
 main()
