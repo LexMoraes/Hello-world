@@ -42,7 +42,7 @@ def main():
             case 4:
                 zona = input('Digite a zona: ')
                 total_bairros = actions.BairroActions.total_bairros(zona)
-                print(f'Total de bairro da zona {zona}: {total_bairros}')
+                print(f'Total de bairros da zona {zona}: {total_bairros}')
 
             case 5:
                 break
